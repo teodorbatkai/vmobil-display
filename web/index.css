@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+:root{
+    --bgcol: #121e12;
+    --textcol: #95df95;
+    --dimcol: #2b3d2b;
+    --gridcol: #000000;
+}
+
+body{
+    background-color: var(--bgcol);
+    color: var(--textcol);
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    text-shadow: 0 0 2px rgba(168, 219, 168, 0.4);
+}
+
+body::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: repeating-linear-gradient(to bottom, transparent 0px, transparent 2px,  rgba(0, 0, 0, 0.4) 3px);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.container{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    position:relative;
+    z-index:1;
+    margin-top:-15vh;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:40vh 1fr 20vh;
+    align-items:center;
+    height:35vh;
+    padding-left:5vw;
+    box-sizing:border-box;
+    padding-right:5vw;
+    margin-bottom:5vh;
+}
+
+.line{
+    font-size:25vh;
+    height:25vh;
+    width:40vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.destination{
+    font-size:25vh;
+    padding-left:3vw;
+    letter-spacing:0.05em;
+    font-weight:400;
+}
+
+.time{
+    font-size:25vh;
+    text-align:right;
+    justify-self: end;
+}
+
+.via{
+    font-size:14vh;
+}
