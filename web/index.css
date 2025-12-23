@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
 :root{
-    --bgcol: #121e12;
-    --textcol: #95df95;
-    --dimcol: #2b3d2b;
+    --bgcol: #012501;
+    --textcol: #40f340;
     --gridcol: #000000;
 }
 
@@ -16,7 +15,7 @@ body{
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    text-shadow: 0 0 2px rgba(168, 219, 168, 0.4);
+    text-shadow: 0 0 2px rgba(150, 228, 150, 0.4);
 }
 
 body::after {
@@ -24,7 +23,27 @@ body::after {
     display: block;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
-    background: repeating-linear-gradient(to bottom, transparent 0px, transparent 2px,  rgba(0, 0, 0, 0.4) 3px);
+    
+    /* COMBINED GRADIENTS */
+    background: 
+        /* 1. VERTICAL LINES (4 columns = 25% width each) */
+        repeating-linear-gradient(
+            to right, 
+            transparent 0%, 
+            transparent calc(25% - 2px), /* Adjust width of gap */
+            rgba(0, 0, 0, 0.8) calc(25% - 2px), /* Start of line */
+            rgba(0, 0, 0, 0.8) 25%             /* End of line (2px thick) */
+        ),
+        
+        /* 2. HORIZONTAL LINES (Scanlines) - Made Thicker */
+        repeating-linear-gradient(
+            to bottom, 
+            transparent 0px, 
+            transparent 3px,  /* 3px of clear text (The Gap) */
+            rgba(0, 0, 0, 0.8) 3px, 
+            rgba(0, 0, 0, 0.8) 5px /* 2px thick black line (Total 5px height) */
+        );
+
     z-index: 10;
     pointer-events: none;
 }

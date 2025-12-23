@@ -8,6 +8,7 @@ let lowerdep;
 fetchdeps();
 
 setInterval(()=>{fetchdeps();}, 10000);
+setInterval(()=>{location.reload();}, 100000);
 
 function fetchdeps(){
     fetch('/getdep').then(response => response.json()).then(data => {
