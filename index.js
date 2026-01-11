@@ -49,7 +49,7 @@ app.get('/getdep', async (req, res) => {
             lastmin = r.mm;
         });
 
-        ret = ret.slice(0, 2);
+        ret = ret.filter(dep => dep.minutes != -1).slice(0, 2);
 
         console.log("Departures:");
         console.log(ret);
