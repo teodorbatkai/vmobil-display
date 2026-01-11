@@ -10,7 +10,7 @@ app.use(express.static('web'));
 app.get('/getdep', async (req, res) => {
     try {
         const dep = await hafas.departures(STATION_ID, { duration: 1440, results: 10 });
-        const ret = dep.filter(dep => dep.line && dep.direction)
+        let ret = dep.filter(dep => dep.line && dep.direction)
             .map(dep => {
                 const now = new Date();
                 const deptime = new Date(dep.when || dep.plannedWhen);
@@ -35,8 +35,21 @@ app.get('/getdep', async (req, res) => {
                     mm: asd
                 };
             })
-            .filter(dep => dep.minutes != -1)
-            .sort((a, b) => a.mm - b.mm).slice(0,2);
+            .sort((a, b) => a.mm - b.mm)
+            .filter(dep => dep.minutes != -1);        
+
+        let lastline = 0;
+        let lastmin = -1;
+        
+        ret.forEach((r) => {
+            if(r.mm === lastmin && r.line === lastline) {
+                r.minutes = -1;
+            }
+            lastline = r.line;
+            lastmin = r.mm;
+        });
+
+        ret = ret.slice(0, 2);
 
         console.log("Departures:");
         console.log(ret);
