@@ -41,15 +41,16 @@ app.get('/getdep', async (req, res) => {
         let lastline = 0;
         let lastmin = -1;
         
-        ret.forEach((r) => {
+        ret = ret.filter((r) => {
             if(r.mm === lastmin && r.line === lastline) {
-                r.minutes = -1;
+                return false;
             }
             lastline = r.line;
             lastmin = r.mm;
+            return true;
         });
 
-        ret = ret.filter(dep => dep.minutes != -1).slice(0, 2);
+        ret = ret.slice(0, 2);
 
         console.log("Departures:");
         console.log(ret);
